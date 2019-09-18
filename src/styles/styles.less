@@ -1,0 +1,52 @@
+li {
+    padding-bottom: 5px;
+}
+
+.planetBlock {
+    display: inline-block;
+    margin: 10px;
+}
+
+.vehicleList {
+    list-style: none;
+    padding: 0px;
+}
+
+.container {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+.loaderContainer {
+    position: fixed;
+    top: 40%;
+    left: 45%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 25px;
+}
+
+.resultContainer {
+    text-align: center;
+}

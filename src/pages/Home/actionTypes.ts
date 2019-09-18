@@ -1,0 +1,18 @@
+export const GET_PLANET = 'GET_PLANET';
+
+export const PLANET_RECEIVED = 'PLANET_RECEIVED';
+
+export const GET_VEHICLES = 'GET_VEHICLES';
+
+export const VECHILES_RECEIVED = 'VEHICLES_RECEIVED';
+
+export const FIND_FALCON = 'FIND_FALCON';
+
+export const FETCH_TOKEN = 'FETCH_TOKEN';
+
+export const TOKEN_RECEIVED = 'TOKEN_RECEIVED';
+
+export const FIND_COMPLETE = 'FIND_COMPLETE';
+
+export const TIME_TAKEN = 'TIME_TAKEN';
+

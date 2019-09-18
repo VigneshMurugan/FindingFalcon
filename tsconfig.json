@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es5",                          
+    "module": "commonjs",                     
+    "allowJs": true,                       
+    "checkJs": false,                       
+    "jsx": "react",                     
+    "rootDir": "./src",                       
+    "strict": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "paths": {
+      "components/*": [
+          "src/components/*"
+      ],
+      "pages/*": [
+        "src/pages/*"
+      ],
+      "config/*": [
+        "src/config/*"
+      ],
+      "styles/*": [
+        "src/styles/*"
+      ]
+    }
+  },
+  "includes": [
+    "./externals.d.ts"
+  ]
+}

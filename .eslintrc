@@ -1,0 +1,21 @@
+{
+    "parser": "babel-eslint",
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "plugins": [
+      "mocha"
+    ],
+    "env": {
+      "browser": true,
+      "mocha": true
+    },
+    "rules":{
+      "react/jsx-indent": 0
+    },
+    "settings": {
+      "import/resolver": "webpack"
+    }
+  }
+  
