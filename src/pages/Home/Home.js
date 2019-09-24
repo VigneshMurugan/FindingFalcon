@@ -39,7 +39,7 @@ export class Home extends React.Component {
                 ...target
             }
         }));
-        this.updateVehicles();
+
     }
 
     updateVehicles(e) {
@@ -50,10 +50,7 @@ export class Home extends React.Component {
             return acc;
         }, {});
         const timeTaken = selectedVehicles.reduce((acc, curr) => {
-            const planetSelected = document.querySelector(`select[id="${curr.name}"`);
-            if (planetSelected.selectedIndex == 0)
-                return acc;
-            const planetName = planetSelected.options[planetSelected.selectedIndex].value;
+            const planetName = this.state.selectedOptions[curr.name];
             const planetDistance = this.props.planets.find(x => x.name == planetName).distance;
             const vehicleSpeed = this.props.vehicles.find(x => x.name == curr.value).speed;
             return acc += planetDistance / vehicleSpeed;
