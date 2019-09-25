@@ -37,9 +37,10 @@ export class Home extends React.Component {
             selectedOptions: {
                 ...prevState.selectedOptions,
                 ...target
-            }
+            },
+            timeTaken: this.computeTimeTaken()
         }));
-
+        
     }
 
     updateVehicles(e) {
@@ -49,16 +50,20 @@ export class Home extends React.Component {
             acc[curr.value]++;
             return acc;
         }, {});
-        const timeTaken = selectedVehicles.reduce((acc, curr) => {
+        this.setState({
+            vehicleCount,
+            timeTaken: this.computeTimeTaken()
+        });
+    }
+
+    computeTimeTaken() {
+        const selectedVehicles = [...document.querySelectorAll('input[type="radio"]:checked')];
+        return selectedVehicles.reduce((acc, curr) => {
             const planetName = this.state.selectedOptions[curr.name];
             const planetDistance = this.props.planets.find(x => x.name == planetName).distance;
             const vehicleSpeed = this.props.vehicles.find(x => x.name == curr.value).speed;
             return acc += planetDistance / vehicleSpeed;
         }, 0);
-        this.setState({
-            vehicleCount,
-            timeTaken
-        });
     }
 
     getOptionsForDropdown(e) {
@@ -154,3 +159,4 @@ export class Home extends React.Component {
             <div className="loaderContainer loader"></div>;
     }
 }
+
