@@ -75,8 +75,10 @@ export class Home extends React.Component {
         return item.name + '(' + (item.total_no - (this.state.vehicleCount[item.name] || 0)) + ')';
     }
 
-    shouldDisableRadioButton(item) {
-        return item.total_no == this.state.vehicleCount[item.name];
+    shouldDisableRadioButton(item, destinationName) {
+        const selectedPlanet = this.state.selectedOptions[destinationName];
+        const isPlanetReachable = selectedPlanet && this.props.planets.find(x=>x.name == selectedPlanet).distance <= item.max_distance
+        return item.total_no == this.state.vehicleCount[item.name] || !isPlanetReachable;
     }
 
     findFalcon() {
@@ -123,7 +125,7 @@ export class Home extends React.Component {
                         <Radio 
                             id={'destination' + i} 
                             key={'radio' + i} 
-                            disabled={this.shouldDisableRadioButton(item)} 
+                            disabled={this.shouldDisableRadioButton(item, 'destination' + i)} 
                             label={this.getLabel(item)} 
                             onChange={this.updateVehicles} 
                             vehicleCount={this.state.vehicleCount} 
