@@ -29,6 +29,18 @@ export class Home extends React.Component {
     }
 
     /* Custom Function Starts */
+    shouldDisableSubmit() {
+        return this.hasSelectesAllPlanets(this.state.selectedOptions) || this.hasSelectedAllVehicles(this.state.vehicleCount);
+    }
+
+    hasSelectedAllVehicles(selectedVehicles) {
+        return Object.values(selectedVehicles).reduce((acc, curr) => acc + curr, 0) != config.NUMBER_OF_DESTINATIONS;
+    }
+
+    hasSelectesAllPlanets(selectedPlanets) {
+        return Object.values(selectedPlanets).filter(x => x).length != config.NUMBER_OF_DESTINATIONS;
+    }
+
     updateDestination(e) {
         let target = {
             [e.target.id]: e.target.value
@@ -72,7 +84,7 @@ export class Home extends React.Component {
     }
 
     getLabel(item) {
-        return item.name + '(' + (item.total_no - (this.state.vehicleCount[item.name] || 0)) + ')';
+        return `${item.name} (${item.total_no - (this.state.vehicleCount[item.name] || 0)})`;
     }
 
     shouldDisableRadioButton(item, destinationName) {
@@ -98,34 +110,23 @@ export class Home extends React.Component {
         this.props.history.push('/result');
     }
 
-    shouldDisableSubmit() {
-        return this.hasSelectesAllPlanets(this.state.selectedOptions) || this.hasSelectedAllVehicles(this.state.vehicleCount);
-    }
-
-    hasSelectedAllVehicles(selectedVehicles) {
-        return Object.values(selectedVehicles).reduce((acc, curr) => acc + curr, 0) != config.NUMBER_OF_DESTINATIONS;
-    }
-
-    hasSelectesAllPlanets(selectedPlanets) {
-        return Object.values(selectedPlanets).filter(x => x).length != config.NUMBER_OF_DESTINATIONS;
-    }
-
     getDestinationPodColumn(i) {
+        const destinationName = 'destination' + i;
         return (<div key={'block ' + i} className="planetBlock">
             <Select 
-                id={'destination' + i}
+                id={destinationName}
                 key={'select' + i}  
-                options={this.getOptionsForDropdown('destination' + i)} 
+                options={this.getOptionsForDropdown(destinationName)} 
                 onChange={this.updateDestination} 
             />
-            <ul key={'list' + i} className="vehicleList">
+            <ul key={'list' + i}>
                 {this.props.vehicles.map((item, index) => {
                     return (
                     <li key={'listItem' + index}>
                         <Radio 
-                            id={'destination' + i} 
+                            id={destinationName} 
                             key={'radio' + i} 
-                            disabled={this.shouldDisableRadioButton(item, 'destination' + i)} 
+                            disabled={this.shouldDisableRadioButton(item, destinationName)} 
                             label={this.getLabel(item)} 
                             onChange={this.updateVehicles} 
                             vehicleCount={this.state.vehicleCount} 
