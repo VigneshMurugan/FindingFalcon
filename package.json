@@ -65,7 +65,7 @@
     "jasmine": "^3.4.0",
     "jasmine-enzyme": "^7.1.1",
     "jest": "^24.9.0",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "less-loader": "^5.0.0",
     "style-loader": "^1.0.0",
     "ts-loader": "^6.1.0",
